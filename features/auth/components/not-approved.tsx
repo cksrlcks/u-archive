@@ -4,7 +4,7 @@ type NotApprovedProps = {
 }
 
 export default function NotApproved({
-  title = "접근 권한이 없습니다",
+  title = "업로드 권한이 없습니다.",
   message = "이 기능을 사용하려면 관리자의 승인이 필요합니다.",
 }: NotApprovedProps) {
   return (
