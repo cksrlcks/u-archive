@@ -61,7 +61,15 @@ export function SignInForm() {
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="password">비밀번호</FieldLabel>
+            <div className="flex items-center justify-between">
+              <FieldLabel htmlFor="password">비밀번호</FieldLabel>
+              <Link
+                href="/forgot-password"
+                className="text-xs text-muted-foreground underline-offset-4 hover:underline"
+              >
+                비밀번호 찾기
+              </Link>
+            </div>
             <Input
               id="password"
               type="password"

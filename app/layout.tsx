@@ -1,6 +1,7 @@
 import "./globals.css"
 
 import { NuqsAdapter } from "nuqs/adapters/next/app"
+import { Toaster } from "sonner"
 
 import QueryProvider from "@/components/providers/query-provider"
 
@@ -13,7 +14,10 @@ export default function RootLayout({
     <html lang="ko" suppressHydrationWarning className="font-sans antialiased">
       <body>
         <NuqsAdapter>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            {children}
+            <Toaster />
+          </QueryProvider>
         </NuqsAdapter>
       </body>
     </html>

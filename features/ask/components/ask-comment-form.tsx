@@ -30,16 +30,16 @@ export function AskCommentForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="align-end flex flex-col gap-2">
       <Textarea
         ref={ref}
         placeholder="댓글을 입력해주세요"
-        className="min-h-0"
+        className=""
         disabled={isPending}
       />
       <Button
         type="submit"
-        size="sm"
+        size="lg"
         disabled={isPending}
         className="shrink-0 self-end"
       >

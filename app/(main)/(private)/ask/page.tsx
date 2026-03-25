@@ -18,8 +18,7 @@ export default async function Page() {
       />
 
       <div className="space-y-6">
-        {isApproved && <AskForm />}
-
+        <AskForm isApproved={isApproved}/>
         <AskList isApproved={isApproved} />
       </div>
     </NarrowInner>
