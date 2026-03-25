@@ -13,11 +13,9 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const session = await auth.api.getSession({ headers: await headers() })
+
   if (!session?.user) {
     return Response.json({ error: "Unauthorized" }, { status: 401 })
-  }
-  if (!session.user.approved) {
-    return Response.json({ error: "Forbidden" }, { status: 403 })
   }
 
   const { content } = await req.json()

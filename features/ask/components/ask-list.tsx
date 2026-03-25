@@ -11,12 +11,15 @@ import {
 } from "@/components/ui/pagination"
 import { AskItem } from "@/features/ask/components/ask-item"
 import { useAsks } from "@/features/ask/query/use-asks"
+import { useSession } from "@/features/auth/service"
 import { getPageRange } from "@/features/work/lib/pagination"
 
-export function AskList({ isApproved }: { isApproved: boolean }) {
+export function AskList() {
   const { asks, isLoading, page, setPage, totalPages } = useAsks()
-
   const pageRange = getPageRange(page, totalPages)
+
+  const { data: session } = useSession()
+  const isApproved = !!session?.user
 
   if (isLoading) {
     return (
