@@ -1,14 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import { Trash2 } from "lucide-react"
+import { Check, Loader2, Pencil, Trash2, X } from "lucide-react"
 
 import UserAvatar from "@/components/common/user-avatar"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 import { AskCommentForm } from "@/features/ask/components/ask-comment-form"
 import { useDeleteAskComment } from "@/features/ask/query/use-ask-comment-mutations"
 import { useAskComments } from "@/features/ask/query/use-ask-comments"
-import { useDeleteAsk } from "@/features/ask/query/use-ask-mutations"
+import {
+  useDeleteAsk,
+  useUpdateAsk,
+} from "@/features/ask/query/use-ask-mutations"
 import type { Ask } from "@/features/ask/query/use-asks"
 import { useSession } from "@/features/auth/service/use-session"
 
@@ -36,6 +40,25 @@ export function AskItem({
   const { mutate: deleteComment } = useDeleteAskComment(ask.id)
 
   const isOwner = session?.user?.id === ask.userId
+  const [isEditing, setIsEditing] = useState(false)
+  const [editContent, setEditContent] = useState(ask.content)
+  const { mutate: updateAsk, isPending: isUpdating } = useUpdateAsk()
+
+  function handleEditSave() {
+    if (!editContent.trim() || editContent === ask.content) {
+      setIsEditing(false)
+      return
+    }
+    updateAsk(
+      { id: ask.id, content: editContent },
+      { onSuccess: () => setIsEditing(false) }
+    )
+  }
+
+  function handleEditCancel() {
+    setEditContent(ask.content)
+    setIsEditing(false)
+  }
 
   return (
     <div className="space-y-3 rounded-lg border p-4">
@@ -47,22 +70,64 @@ export function AskItem({
             <span className="text-sm font-medium">
               {ask.authorName ?? "알 수 없음"}
             </span>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground">
                 {formatDate(ask.createdAt)}
               </span>
-              {isOwner && (
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  onClick={() => deleteAsk(ask.id)}
-                >
-                  <Trash2 />
-                </Button>
+              {isOwner && !isEditing && (
+                <div className="flex items-center">
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={() => setIsEditing(true)}
+                  >
+                    <Pencil />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={() => deleteAsk(ask.id)}
+                  >
+                    <Trash2 />
+                  </Button>
+                </div>
+              )}
+              {isEditing && (
+                <div className="flex items-center">
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={handleEditSave}
+                    disabled={isUpdating}
+                  >
+                    {isUpdating ? (
+                      <Loader2 className="animate-spin" />
+                    ) : (
+                      <Check />
+                    )}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={handleEditCancel}
+                    disabled={isUpdating}
+                  >
+                    <X />
+                  </Button>
+                </div>
               )}
             </div>
           </div>
-          <p className="text-sm whitespace-pre-wrap">{ask.content}</p>
+          {isEditing ? (
+            <Textarea
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+              className="min-h-20 md:text-sm"
+              autoFocus
+            />
+          ) : (
+            <p className="text-sm whitespace-pre-wrap">{ask.content}</p>
+          )}
         </div>
       </div>
 

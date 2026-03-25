@@ -2,13 +2,13 @@
 
 import { useRef } from "react"
 import { AlertTriangleIcon, InfoIcon } from "lucide-react"
+import { toast } from "sonner"
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useCreateAsk } from "@/features/ask/query/use-ask-mutations"
 import { useSession } from "@/features/auth/service"
-import { toast } from "sonner"
 
 export function AskForm() {
   const ref = useRef<HTMLTextAreaElement>(null)
@@ -39,9 +39,7 @@ export function AskForm() {
       {!isApproved ? (
         <Alert className="border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50">
           <AlertTriangleIcon />
-          <AlertTitle>
-            작업 요청은 회원가입후 작성해주세요.
-          </AlertTitle>
+          <AlertTitle>작업 요청은 회원가입후 작성해주세요.</AlertTitle>
           <AlertDescription></AlertDescription>
         </Alert>
       ) : (
@@ -59,7 +57,7 @@ export function AskForm() {
         <Textarea
           ref={ref}
           placeholder="작업 요청 내용을 입력해주세요"
-          className="min-h-24 p-3"
+          className="min-h-24 p-3 md:text-sm"
           disabled={isPending || !isApproved}
         />
         <div className="flex justify-end">

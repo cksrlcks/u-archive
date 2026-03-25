@@ -24,6 +24,28 @@ export function useCreateAsk() {
   })
 }
 
+export function useUpdateAsk() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async ({ id, content }: { id: string; content: string }) => {
+      const res = await fetch(`/api/asks/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content }),
+      })
+      if (!res.ok) {
+        const { error } = await res.json()
+        throw new Error(error ?? "Failed to update ask")
+      }
+      return res.json()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["asks"] })
+    },
+  })
+}
+
 export function useDeleteAsk() {
   const queryClient = useQueryClient()
 
