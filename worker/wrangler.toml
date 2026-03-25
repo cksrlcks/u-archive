@@ -1,0 +1,7 @@
+name = "u-archive-download"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+[[custom_domains]]
+pattern = "download.u-archive.com"
+zone_name = "u-archive.com"
