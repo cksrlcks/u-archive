@@ -61,7 +61,7 @@ export function WorkDetail({ id }: WorkDetailProps) {
             </span>
             <Separator orientation="vertical" />
             <span className="flex items-center gap-2 text-xs font-semibold">
-              {work.author?.name ?? "알 수 없음"}
+              {work.author?.name || '-'}
             </span>
           </div>
         </div>

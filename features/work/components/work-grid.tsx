@@ -25,7 +25,11 @@ export function WorkGrid() {
   function handleWorkClick(work: (typeof works)[number]) {
     queryClient.setQueryData<WorkDetail>(["works", work.id], (old) => {
       if (old) return old
-      return { ...work, author: null, likeCount: 0, isLiked: false }
+      return { ...work, author: {
+        id: work.userId,
+        name: work.authorName,
+        image: null,
+      }, likeCount: 0, isLiked: false }
     })
     router.push(`/works/${work.id}`)
   }
