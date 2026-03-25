@@ -44,7 +44,7 @@ export function SignUpForm() {
     const { error } = await signUp(data.name, data.email, data.password)
     if (error) {
       setError("root", {
-        message: error.message ?? "회원가입에 실패했습니다.",
+        message: "회원가입에 실패했습니다.",
       })
       return
     }

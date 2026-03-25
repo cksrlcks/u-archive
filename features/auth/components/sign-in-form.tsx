@@ -37,7 +37,7 @@ export function SignInForm() {
     const { error } = await signIn(data.email, data.password)
     if (error) {
       setError("root", {
-        message: error.message ?? "로그인에 실패했습니다.",
+        message: "로그인에 실패했습니다.",
       })
       return
     }

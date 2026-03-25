@@ -2,10 +2,16 @@ import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 
 import { db } from "@/lib/db"
-import { sendPasswordResetEmail } from "@/lib/mailer"
 import * as schema from "@/lib/db/schema"
+import { sendPasswordResetEmail } from "@/lib/mailer"
 
 export const auth = betterAuth({
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60,
+    },
+  },
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: {
