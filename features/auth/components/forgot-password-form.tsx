@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { requestPasswordReset } from "@/features/auth/service"
+import { AuthFormContainer } from "./auth-form-container"
 
 const schema = z.object({
   email: z.string().email("유효한 이메일을 입력하세요"),
@@ -45,7 +46,7 @@ export function ForgotPasswordForm() {
 
   if (sent) {
     return (
-      <div className="w-full max-w-sm space-y-4 text-center">
+      <AuthFormContainer className="space-y-4 text-center">
         <h2 className="text-lg font-semibold">메일을 확인해 주세요</h2>
         <p className="text-sm text-muted-foreground">
           비밀번호 재설정 링크를 이메일로 발송했습니다.
@@ -58,12 +59,12 @@ export function ForgotPasswordForm() {
         >
           로그인으로 돌아가기
         </Link>
-      </div>
+      </AuthFormContainer>
     )
   }
 
   return (
-    <div className="w-full max-w-sm">
+    <AuthFormContainer>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <div className="mb-4 space-y-1">
           <h2 className="text-lg font-semibold">비밀번호 찾기</h2>
@@ -101,6 +102,6 @@ export function ForgotPasswordForm() {
           </Link>
         </p>
       </form>
-    </div>
+    </AuthFormContainer>
   )
 }

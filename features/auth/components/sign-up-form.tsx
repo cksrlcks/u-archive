@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { signUp } from "@/features/auth/service"
+import { AuthFormContainer } from "./auth-form-container"
 
 const schema = z
   .object({
@@ -52,7 +53,7 @@ export function SignUpForm() {
   }
 
   return (
-    <div className="w-full max-w-sm">
+    <AuthFormContainer>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <FieldGroup>
           <Field>
@@ -121,6 +122,6 @@ export function SignUpForm() {
           </Link>
         </p>
       </form>
-    </div>
+    </AuthFormContainer>
   )
 }

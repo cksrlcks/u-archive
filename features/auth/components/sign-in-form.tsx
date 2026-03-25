@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { signIn } from "@/features/auth/service"
+import { AuthFormContainer } from "./auth-form-container"
 
 const schema = z.object({
   email: z.string().email("유효한 이메일을 입력하세요"),
@@ -45,7 +46,7 @@ export function SignInForm() {
   }
 
   return (
-    <div className="w-full max-w-sm">
+    <AuthFormContainer>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <FieldGroup>
           <Field>
@@ -97,6 +98,6 @@ export function SignInForm() {
           </Link>
         </p>
       </form>
-    </div>
+    </AuthFormContainer>
   )
 }

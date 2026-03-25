@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { resetPassword } from "@/features/auth/service"
+import { AuthFormContainer } from "./auth-form-container"
 
 const schema = z
   .object({
@@ -60,7 +61,7 @@ export function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <div className="w-full max-w-sm space-y-4 text-center">
+      <AuthFormContainer className="space-y-4 text-center">
         <h2 className="text-lg font-semibold">유효하지 않은 링크</h2>
         <p className="text-sm text-muted-foreground">
           비밀번호 재설정 링크가 올바르지 않습니다.
@@ -71,13 +72,13 @@ export function ResetPasswordForm() {
         >
           다시 요청하기
         </Link>
-      </div>
+      </AuthFormContainer>
     )
   }
 
   if (done) {
     return (
-      <div className="w-full max-w-sm space-y-4 text-center">
+      <AuthFormContainer className="space-y-4 text-center">
         <h2 className="text-lg font-semibold">비밀번호가 변경되었습니다</h2>
         <p className="text-sm text-muted-foreground">
           새 비밀번호로 로그인해 주세요.
@@ -85,12 +86,12 @@ export function ResetPasswordForm() {
         <Button className="w-full" onClick={() => router.push("/sign-in")}>
           로그인으로 이동
         </Button>
-      </div>
+      </AuthFormContainer>
     )
   }
 
   return (
-    <div className="w-full max-w-sm">
+    <AuthFormContainer>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <div className="mb-4 space-y-1">
           <h2 className="text-lg font-semibold">새 비밀번호 설정</h2>
@@ -133,6 +134,6 @@ export function ResetPasswordForm() {
           {isSubmitting ? "변경 중..." : "비밀번호 변경"}
         </Button>
       </form>
-    </div>
+    </AuthFormContainer>
   )
 }
