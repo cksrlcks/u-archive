@@ -2,32 +2,18 @@ import { PropsWithChildren } from "react"
 
 import { cn } from "@/lib/utils"
 
-export function Nav({
+export default function Nav({
   children,
   className,
 }: PropsWithChildren<{ className?: string }>) {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 flex h-full w-60 flex-col p-6",
+        "fixed top-0 left-0 z-100 flex h-12 w-full items-center justify-between gap-2 bg-white px-4 md:h-full md:w-60 md:flex-col md:items-start md:justify-start md:gap-0 md:p-6",
         className
       )}
     >
       {children}
     </nav>
   )
-}
-
-export function NavHeader({
-  children,
-  className,
-}: PropsWithChildren<{ className?: string }>) {
-  return <div className={cn("mb-auto", className)}>{children}</div>
-}
-
-export function NavFooter({
-  children,
-  className,
-}: PropsWithChildren<{ className?: string }>) {
-  return <div className={cn("mt-auto", className)}>{children}</div>
 }

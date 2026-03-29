@@ -17,7 +17,7 @@ export function WorkSearchInput({
   const inputRef = useRef<HTMLInputElement>(null)
 
   return (
-    <div className="border-light-100 bg-light-input relative flex h-12 shrink-0 items-center rounded-xl border bg-white shadow-[0px_7px_21px_0px_rgba(51,51,51,0.05)]">
+    <div className="border-light-100 bg-light-input relative flex h-10 shrink-0 items-center rounded-xl border bg-white shadow-[0px_7px_21px_0px_rgba(51,51,51,0.05)] md:h-12">
       <input
         ref={inputRef}
         type="text"
@@ -27,7 +27,7 @@ export function WorkSearchInput({
             onSearch(inputRef.current?.value.trim() || null)
         }}
         placeholder="검색어를 입력해주세요"
-        className="h-full w-full rounded-xl px-4 text-sm"
+        className="h-full w-full rounded-xl px-4 text-xs md:text-sm"
       />
       {defaultValue && (
         <Button

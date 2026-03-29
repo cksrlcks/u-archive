@@ -25,21 +25,26 @@ export function WorkGrid() {
   function handleWorkClick(work: (typeof works)[number]) {
     queryClient.setQueryData<WorkDetail>(["works", work.id], (old) => {
       if (old) return old
-      return { ...work, author: {
-        id: work.userId,
-        name: work.authorName,
-        image: null,
-      }, likeCount: 0, isLiked: false }
+      return {
+        ...work,
+        author: {
+          id: work.userId,
+          name: work.authorName,
+          image: null,
+        },
+        likeCount: 0,
+        isLiked: false,
+      }
     })
     router.push(`/works/${work.id}`)
   }
 
   return (
-    <div className="-my-8">
-      <div className="sticky top-0 z-10 bg-white pt-8 pb-6">
+    <div className="-mx-4 md:mx-0 md:-my-8">
+      <div className="pt-2pb-4 sticky top-12 z-10 bg-white px-4 pb-3 md:top-0 md:px-0 md:pt-8 md:pb-6">
         <WorkSearchInput defaultValue={search} onSearch={setSearch} />
       </div>
-      <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-px sm:grid-cols-3 md:gap-1 lg:grid-cols-4">
         {isLoading ? (
           <SkeletonGrid count={8} />
         ) : (
@@ -51,7 +56,11 @@ export function WorkGrid() {
             >
               <div className="relative aspect-square overflow-hidden bg-muted">
                 <Image
-                  src={cdnUrl(work.imageUrl, { width: 500, quality: 100, format: "webp" })}
+                  src={cdnUrl(work.imageUrl, {
+                    width: 500,
+                    quality: 100,
+                    format: "webp",
+                  })}
                   alt=""
                   className="h-full w-full object-cover transition-opacity group-hover:opacity-90"
                   fill

@@ -107,10 +107,9 @@ export function EditForm({ workId, defaultValues }: Props) {
           <Image
             src={displayImage}
             alt="preview"
-            fill={!displayWidth}
             width={displayWidth}
             height={displayHeight}
-            className="object-contain"
+            className="absolute h-full w-full object-contain"
           />
           <div className="absolute inset-0 flex items-end justify-center bg-black/0 pb-3 opacity-0 transition hover:bg-black/20 hover:opacity-100">
             <span className="rounded-md bg-black/60 px-2.5 py-1 text-xs text-white">

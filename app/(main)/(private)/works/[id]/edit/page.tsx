@@ -1,6 +1,7 @@
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 
+import PageHeader from "@/components/common/page-header"
 import { auth } from "@/features/auth/lib/auth"
 import { WorkEdit } from "@/features/work/components/work-edit"
 
@@ -17,5 +18,10 @@ export default async function Page({ params }: Props) {
     redirect("/explore")
   }
 
-  return <WorkEdit id={id} />
+  return (
+    <>
+      <PageHeader title="수정" />
+      <WorkEdit id={id} />
+    </>
+  )
 }

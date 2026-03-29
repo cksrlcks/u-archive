@@ -1,9 +1,9 @@
 import { headers } from "next/headers"
 
+import PageHeader from "@/components/common/page-header"
 import NotApproved from "@/features/auth/components/not-approved"
 import { auth } from "@/features/auth/lib/auth"
 import { UploadForm } from "@/features/work/components/upload-form"
-import { WorkFormLayout } from "@/features/work/components/work-form-layout"
 
 export default async function Page() {
   const session = await auth.api.getSession({ headers: await headers() })
@@ -13,8 +13,9 @@ export default async function Page() {
   }
 
   return (
-    <WorkFormLayout title="업로드">
+    <>
+      <PageHeader title="업로드" />
       <UploadForm />
-    </WorkFormLayout>
+    </>
   )
 }

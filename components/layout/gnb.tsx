@@ -6,14 +6,14 @@ import { Compass, MessageCircle, Upload } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-type NavItem = {
+export type NavItem = {
   href: string
   label: string
   icon: React.ComponentType<{ className?: string }>
   additionalMatchPaths?: string[]
 }
 
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     href: "/explore",
     label: "Explore",
@@ -28,7 +28,7 @@ export default function Gnb() {
   const pathname = usePathname()
 
   return (
-    <nav className="mt-6 flex flex-col gap-1">
+    <nav className="mt-6 hidden flex-col gap-1 md:flex md:w-full">
       {navItems.map(({ href, label, icon: Icon }) => {
         const isActive =
           pathname === href ||

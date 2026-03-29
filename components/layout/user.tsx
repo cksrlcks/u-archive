@@ -19,20 +19,20 @@ export default function User() {
 
   if (session) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="ml-auto flex items-center gap-2 md:mt-auto md:ml-0">
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex w-full cursor-pointer items-center gap-3 rounded-md px-3 py-3 outline-none hover:bg-gray-100 data-[state=open]:bg-gray-100">
-            <div className="space-y-1 text-left min-w-0">
+          <DropdownMenuTrigger className="flex w-full cursor-pointer items-center gap-3 rounded-md outline-none md:px-3 md:py-3 md:hover:bg-gray-100 md:data-[state=open]:bg-gray-100">
+            <div className="min-w-0 space-y-1 text-left">
               <div className="flex items-center gap-3">
                 <UserAvatar
                   name={session.user.name}
                   email={session.user.email}
                 />
-                <div className="-space-y-0.5 min-w-0">
+                <div className="hidden min-w-0 -space-y-0.5 md:block">
                   <div className="flex items-center gap-1 text-sm font-semibold">
                     {session.user.name}
                   </div>
-                  <div className="text-[11px] text-muted-foreground truncate">
+                  <div className="truncate text-[11px] text-muted-foreground">
                     {session.user.email}
                   </div>
                 </div>

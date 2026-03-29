@@ -38,17 +38,21 @@ export function WorkDetail({ id }: WorkDetailProps) {
   if (!work) notFound()
 
   return (
-    <div className="grid h-[90vh] grid-cols-2">
-      <div className="relative h-full overflow-hidden rounded-xl bg-muted">
+    <div className="grid h-[90vh] grid-cols-2 max-lg:grid-cols-1 max-lg:h-auto">
+      <div className="relative overflow-hidden rounded-xl bg-muted h-full max-lg:h-[50vh] max-md:-mx-4 max-md:rounded-none">
         <Image
-          src={cdnUrl(work.imageUrl, { width: 700, quality: 100, format: "webp" })}
+          src={cdnUrl(work.imageUrl, {
+            width: 700,
+            quality: 100,
+            format: "webp",
+          })}
           alt=""
           className="h-full w-full object-contain"
           fill
           unoptimized
         />
       </div>
-      <div className="space-y-4 px-10 py-4">
+      <div className="space-y-4 px-10 py-4 max-lg:px-0">
         <div className="flex items-center justify-between">
           <Badge className="bg-black">
             {work.platform ? getPlatformLabel(work.platform) : "-"}
@@ -61,7 +65,7 @@ export function WorkDetail({ id }: WorkDetailProps) {
             </span>
             <Separator orientation="vertical" />
             <span className="flex items-center gap-2 text-xs font-semibold">
-              {work.author?.name || '-'}
+              {work.author?.name || "-"}
             </span>
           </div>
         </div>
@@ -90,7 +94,10 @@ export function WorkDetail({ id }: WorkDetailProps) {
           />
           <div className="flex items-center gap-1">
             <WorkActions workId={id} workOwnerId={work.userId ?? ""} />
-            <DownloadButton imageUrl={`https://${work.imageUrl}`} imageWidth={work.imageWidth} />
+            <DownloadButton
+              imageUrl={`https://${work.imageUrl}`}
+              imageWidth={work.imageWidth}
+            />
           </div>
         </div>
         <div className="mt-6 flex flex-col gap-4">

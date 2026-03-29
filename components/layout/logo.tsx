@@ -1,10 +1,9 @@
-import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
 export default function Logo() {
   return (
-    <Link href="/" className="flex w-30">
+    <Link href="/" className="flex w-20 md:w-30">
       <Image
         src="/logo.svg"
         alt="u-archive"
