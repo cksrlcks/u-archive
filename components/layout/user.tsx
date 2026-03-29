@@ -65,10 +65,10 @@ export default function User() {
   return (
     <Link
       href="/sign-in"
-      className="flex items-center gap-3 rounded-md px-4 py-3 outline-none hover:bg-gray-100"
+      className="ml-auto flex items-center gap-3 rounded-md p-2 outline-none hover:bg-gray-100 md:mt-auto md:ml-0 md:px-4 md:py-3"
     >
       <LogInIcon className="size-4 text-muted-foreground" />
-      <span className="text-sm font-medium">로그인</span>
+      <span className="hidden text-sm font-medium md:block">로그인</span>
     </Link>
   )
 }
